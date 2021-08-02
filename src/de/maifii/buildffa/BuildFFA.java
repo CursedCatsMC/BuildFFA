@@ -53,6 +53,7 @@ public class BuildFFA extends JavaPlugin {
         pluginManager.registerEvents(new EntityDamageListener(), this);
         pluginManager.registerEvents(new EntityDamageByEntityListener(), this);
         pluginManager.registerEvents(new PlayerMoveListener(), this);
+        pluginManager.registerEvents(new PlayerJoinListener(), this);
 
         getCommand("build").setExecutor(new BuildCommand());
         getCommand("set").setExecutor(new SetCommand());
