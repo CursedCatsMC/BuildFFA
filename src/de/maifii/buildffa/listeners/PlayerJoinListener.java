@@ -16,12 +16,11 @@ public class PlayerJoinListener implements Listener {
         InventoryUtils invs = new InventoryUtils();
         Player spieler = event.getPlayer();
 
-
-        locations.teleport("Spawn", spieler);
         spieler.setMaxHealth(20.0);
         spieler.setHealth(20.0);
         invs.setInventory(spieler);
         invs.setEquipment(spieler);
         event.setJoinMessage(BuildFFA.Prefix + "Der Spieler §9" + spieler.getName() + " §7hat das Spiel betreten.");
+        locations.teleport("Spawn", spieler);
     }
 }
