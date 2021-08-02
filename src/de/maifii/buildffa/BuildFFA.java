@@ -2,10 +2,7 @@ package de.maifii.buildffa;
 
 import de.maifii.buildffa.commands.BuildCommand;
 import de.maifii.buildffa.commands.SetCommand;
-import de.maifii.buildffa.listeners.BlockBreakListener;
-import de.maifii.buildffa.listeners.BlockPlaceListener;
-import de.maifii.buildffa.listeners.FoodLevelChangeListener;
-import de.maifii.buildffa.listeners.WeatherChanngeListener;
+import de.maifii.buildffa.listeners.*;
 import de.maifii.buildffa.utils.FileUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -15,11 +12,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BuildFFA extends JavaPlugin {
 
     private File file = new File("plugins//LobbySystem//locations.yml");
     private YamlConfiguration location = YamlConfiguration.loadConfiguration(this.file);
+    private HashMap<Player, Player> lastDamager = new HashMap();
 
     private static ArrayList<Player> buildMode;
 
@@ -51,6 +50,9 @@ public class BuildFFA extends JavaPlugin {
         pluginManager.registerEvents(new BlockPlaceListener(), this);
         pluginManager.registerEvents(new FoodLevelChangeListener(), this);
         pluginManager.registerEvents(new WeatherChanngeListener(), this);
+        pluginManager.registerEvents(new EntityDamageListener(), this);
+        pluginManager.registerEvents(new EntityDamageByEntityListener(), this);
+        pluginManager.registerEvents(new PlayerMoveListener(), this);
 
         getCommand("build").setExecutor(new BuildCommand());
         getCommand("set").setExecutor(new SetCommand());
@@ -86,5 +88,9 @@ public class BuildFFA extends JavaPlugin {
 
     public static ArrayList<Player> getBuildMode() {
         return buildMode;
+    }
+
+    public HashMap<Player, Player> getLastDamager() {
+        return lastDamager;
     }
 }

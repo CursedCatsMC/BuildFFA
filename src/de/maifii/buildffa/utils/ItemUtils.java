@@ -8,7 +8,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class ItemUtils {
 
-    public void setItemInInv(Inventory inventory, Material material, String name, Integer slot, Integer zahl) {
+    public void setItemInInventory(Inventory inventory, Material material, String name, Integer slot, Integer zahl) {
         ItemStack item = new ItemStack(material);
         ItemMeta itemMeta = item.getItemMeta();
         itemMeta.setDisplayName(name);
